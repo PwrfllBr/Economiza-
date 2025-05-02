@@ -30,4 +30,7 @@ public class Tranx {
     @ManyToOne
     @JoinColumn(name = "tag_id")
     private Tag tag_id;
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet_id;
 }
