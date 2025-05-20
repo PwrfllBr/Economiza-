@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Entity
 @Table(name = "tranx")
 public class Tranx {
@@ -33,4 +30,73 @@ public class Tranx {
     @ManyToOne
     @JoinColumn(name = "wallet_id")
     private Wallet wallet_id;
+
+    public Tranx() {
+    }
+
+    public Tranx(int id, BigDecimal amount, LocalDate trx_date, String note, Category category_id, Tag tag_id, Wallet wallet_id) {
+        this.id = id;
+        this.amount = amount;
+        this.trx_date = trx_date;
+        this.note = note;
+        this.category_id = category_id;
+        this.tag_id = tag_id;
+        this.wallet_id = wallet_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public LocalDate getTrx_date() {
+        return trx_date;
+    }
+
+    public void setTrx_date(LocalDate trx_date) {
+        this.trx_date = trx_date;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Category getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Category category_id) {
+        this.category_id = category_id;
+    }
+
+    public Tag getTag_id() {
+        return tag_id;
+    }
+
+    public void setTag_id(Tag tag_id) {
+        this.tag_id = tag_id;
+    }
+
+    public Wallet getWallet_id() {
+        return wallet_id;
+    }
+
+    public void setWallet_id(Wallet wallet_id) {
+        this.wallet_id = wallet_id;
+    }
 }
