@@ -23,6 +23,12 @@ public class AppUserController {
         AppUser au = m.map(nu, AppUser.class);
         AUS.insert(au);
     }
+    @PutMapping
+    public void editUser(@RequestBody NewUserDTO nu){
+        ModelMapper m = new ModelMapper();
+        AppUser au = m.map(nu, AppUser.class);
+        AUS.insert(au);
+    }
 
     @GetMapping
     public List<AppUserDTO> listUsers(){
@@ -37,5 +43,9 @@ public class AppUserController {
         ModelMapper m = new ModelMapper();
         AppUserDTO dto = m.map(AUS.listId(id), AppUserDTO.class);
         return dto;
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Integer id){
+        AUS.delete(id);
     }
 }
