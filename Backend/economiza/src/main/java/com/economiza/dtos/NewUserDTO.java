@@ -1,31 +1,12 @@
-package com.economiza.entities;
+package com.economiza.dtos;
 
-import jakarta.persistence.*;
-@Entity
-@Table(name = "app_user")
-public class AppUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import lombok.Data;
+public class NewUserDTO {
     private int id;
-    @Column(name = "first_name", length = 35, nullable = false)
     private String first_name;
-    @Column(name = "last_name", length = 35, nullable = false)
     private String last_name;
-    @Column(name = "mail", length = 255, nullable = false)
     private String mail;
-    @Column(name = "password", length = 100, nullable = false)
     private String password;
-
-    public AppUser() {
-    }
-    public AppUser(int id, String first_name, String last_name, String mail, String password) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.mail = mail;
-        this.password = password;
-    }
-
     public int getId() {
         return id;
     }
@@ -66,4 +47,3 @@ public class AppUser {
         this.password = password;
     }
 }
-
