@@ -9,4 +9,5 @@ public interface ICategoryService {
     public List<Category> list();
     public void delete (int id);
     public Category listId (int id);
+    public List<Category>  findByType(Boolean type);
 }

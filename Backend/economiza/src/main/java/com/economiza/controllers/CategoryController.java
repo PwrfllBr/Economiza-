@@ -42,6 +42,13 @@ public class CategoryController {
         CategoryDTO dto = m.map(cS.listId(id), CategoryDTO.class);
         return dto;
     }
+    @GetMapping("/type")
+    public List<CategoryDTO> getCategoriesByType(@RequestParam Boolean type){
+        return cS.findByType(type).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y, CategoryDTO.class);
+        }).collect(Collectors.toList());
+    }
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") Integer id){
         cS.delete(id);

@@ -14,7 +14,7 @@ public class Category {
     @Column(name = "name", length = 50, nullable = false)
     private String name;
     @Column(name = "type")
-    private Boolean type;
+    private Boolean type; //true = income, false = expense
 
     public Category() {
     }

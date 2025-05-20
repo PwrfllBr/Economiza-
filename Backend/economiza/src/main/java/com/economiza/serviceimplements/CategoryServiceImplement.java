@@ -30,4 +30,9 @@ public class CategoryServiceImplement implements ICategoryService {
     public Category listId(int id) {
         return cR.findById(id).orElse(new Category());
     }
+
+    @Override
+    public List<Category> findByType(Boolean type) {
+        return cR.findCategoriesByType(type);
+    }
 }
