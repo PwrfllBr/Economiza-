@@ -27,13 +27,6 @@ public class WalletController {
         Wallet w = m.map(wd, Wallet.class);
         wS.insert(w);
     }
-    @GetMapping
-    public List<WalletDTO> listWallets(){
-        return wS.list().stream().map(y->{
-            ModelMapper m = new ModelMapper();
-            return m.map(y, WalletDTO.class);
-        }).collect(Collectors.toList());
-    }
     @GetMapping("/{id}")
     public WalletDTO getWallet(@PathVariable("id") Integer id){
         ModelMapper m = new ModelMapper();

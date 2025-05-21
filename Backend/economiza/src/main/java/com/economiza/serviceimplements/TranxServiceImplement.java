@@ -18,11 +18,6 @@ public class TranxServiceImplement implements ITranxService {
     }
 
     @Override
-    public List<Tranx> list() {
-        return txR.findAll();
-    }
-
-    @Override
     public void delete(int id) {
         txR.deleteById(id);
     }
@@ -30,5 +25,15 @@ public class TranxServiceImplement implements ITranxService {
     @Override
     public Tranx listId(int id) {
         return txR.findById(id).orElse(new Tranx());
+    }
+
+    @Override
+    public List<Tranx> getTranxFromUser(int id) {
+        return txR.getTranxFromUser(id);
+    }
+
+    @Override
+    public List<Tranx> getTranxFromWallet(int id) {
+        return txR.getTranxFromWallet(id);
     }
 }

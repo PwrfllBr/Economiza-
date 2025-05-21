@@ -27,18 +27,25 @@ public class TranxController {
         Tranx t = m.map(txd, Tranx.class);
         tS.insert(t);
     }
-    @GetMapping
-    public List<TranxDTO> listTranxs(){
-        return tS.list().stream().map(y->{
-            ModelMapper m = new ModelMapper();
-            return  m.map(y, TranxDTO.class);
-        }).collect(Collectors.toList());
-    }
     @GetMapping("/{id}")
     public TranxDTO getTranx(@PathVariable("id") Integer id){
         ModelMapper m = new ModelMapper();
         TranxDTO dto = m.map(tS.listId(id), TranxDTO.class);
         return dto;
+    }
+    @GetMapping("/from/{id}")
+    public List<TranxDTO> getTranxFromUser(@PathVariable("id") Integer id){
+        return tS.getTranxFromUser(id).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return  m.map(y, TranxDTO.class);
+        }).collect(Collectors.toList());
+    }
+    @GetMapping("/fromwallet/{id}")
+    public List<TranxDTO> getTranxFromWallet(@PathVariable("id") Integer id){
+        return tS.getTranxFromWallet(id).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return  m.map(y, TranxDTO.class);
+        }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
     public void deleteTranx(@PathVariable("id") Integer id){

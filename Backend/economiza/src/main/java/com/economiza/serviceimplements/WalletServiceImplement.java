@@ -19,11 +19,6 @@ public class WalletServiceImplement implements IWalletService {
     }
 
     @Override
-    public List<Wallet> list() {
-        return wR.findAll();
-    }
-
-    @Override
     public void delete(int id) {
         wR.deleteById(id);
     }

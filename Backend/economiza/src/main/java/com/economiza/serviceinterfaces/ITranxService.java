@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface ITranxService {
     public void insert(Tranx tranx);
-    public List<Tranx> list();
     public void delete(int id);
     public Tranx listId(int id);
+    public List<Tranx> getTranxFromUser(int id);
+    public List<Tranx> getTranxFromWallet(int id);
+
 }
