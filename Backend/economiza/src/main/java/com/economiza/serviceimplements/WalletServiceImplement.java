@@ -32,4 +32,9 @@ public class WalletServiceImplement implements IWalletService {
     public Wallet listId(int id) {
         return wR.findById(id).orElse(new Wallet());
     }
+
+    @Override
+    public List<Wallet> getUserWallets(int id) {
+        return wR.findWalletsFromUser(id);
+    }
 }

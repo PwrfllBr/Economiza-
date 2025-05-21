@@ -40,6 +40,13 @@ public class WalletController {
         WalletDTO dto = m.map(wS.listId(id), WalletDTO.class);
         return dto;
     }
+    @GetMapping("/from/{id}")
+    public List<WalletDTO> getWalletsFromUser(@PathVariable("id") Integer id){
+        return wS.getUserWallets(id).stream().map(y->{
+            ModelMapper m = new ModelMapper();
+            return m.map(y, WalletDTO.class);
+        }).collect(Collectors.toList());
+    }
     @DeleteMapping("/{id}")
     public void deleteWallet(@PathVariable("id") Integer id){
         wS.delete(id);
