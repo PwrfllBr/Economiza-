@@ -16,19 +16,6 @@ public class CategoryController {
     @Autowired
     private ICategoryService cS;
 
-    @PostMapping
-    public void addCategory(@RequestBody CategoryDTO categoryDTO){
-        ModelMapper m = new ModelMapper();
-        Category c = m.map(categoryDTO, Category.class);
-        cS.insert(c);
-    }
-
-    @PutMapping
-    public void editCategory(@RequestBody CategoryDTO categoryDTO){
-        ModelMapper m = new ModelMapper();
-        Category c = m.map(categoryDTO, Category.class);
-        cS.insert(c);
-    }
     @GetMapping
     public List<CategoryDTO> listCategories(){
         return cS.list().stream().map(y->{
