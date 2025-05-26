@@ -39,11 +39,29 @@ public class TranxServiceImplement implements ITranxService {
     }
 
     @Override
+    public List<Object[]> getIncomeFlowFromWalletByDay(Integer userid, Integer walletid, LocalDate initdate, LocalDate enddate) {
+        if (walletid != null) {
+            return txR.getIncomeFlowFromWalletByDay(userid, walletid, initdate, enddate);
+        } else {
+            return txR.getIncomeFlowFromUserByDay(userid,initdate,enddate);
+        }
+    }
+
+    @Override
     public List<Object[]> getIncomeFlowFromWalletByWeek(Integer userid, Integer walletid, LocalDate initdate, LocalDate enddate) {
         if (walletid != null) {
             return txR.getIncomeFlowFromWalletByWeek(userid, walletid, initdate, enddate);
         } else {
             return txR.getIncomeFlowFromUserByWeek(userid,initdate,enddate);
+        }
+    }
+
+    @Override
+    public List<Object[]> getIncomeFlowFromWalletByMonth(Integer userid, Integer walletid, LocalDate initdate, LocalDate enddate) {
+        if (walletid != null) {
+            return txR.getIncomeFlowFromWalletByMonth(userid, walletid, initdate, enddate);
+        } else {
+            return txR.getIncomeFlowFromUserByMonth(userid,initdate,enddate);
         }
     }
 }

@@ -54,11 +54,29 @@ public class TranxController {
             return  m.map(y, TranxDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/incomeflow/day")
+    public List<IncomeFlowDTO> getIncomeFlowByDay(@RequestParam("userid") Integer userid,
+                                                    @RequestParam(value = "walletid", required = false) Integer walletid, @RequestParam("initdate") LocalDate initdate,
+                                                    @RequestParam("enddate") LocalDate enddate){
+        List<Object[]> listRow = tS.getIncomeFlowFromWalletByDay(userid,walletid,initdate,enddate);
+        return getIncomeFlowDTOList(listRow);
+    }
     @GetMapping("/incomeflow/week")
     public List<IncomeFlowDTO> getIncomeFlowByWeek(@RequestParam("userid") Integer userid,
        @RequestParam(value = "walletid", required = false) Integer walletid, @RequestParam("initdate") LocalDate initdate,
        @RequestParam("enddate") LocalDate enddate){
         List<Object[]> listRow = tS.getIncomeFlowFromWalletByWeek(userid,walletid,initdate,enddate);
+        return getIncomeFlowDTOList(listRow);
+    }
+    @GetMapping("/incomeflow/month")
+    public List<IncomeFlowDTO> getIncomeFlowByMonth(@RequestParam("userid") Integer userid,
+                                                   @RequestParam(value = "walletid", required = false) Integer walletid, @RequestParam("initdate") LocalDate initdate,
+                                                   @RequestParam("enddate") LocalDate enddate){
+        List<Object[]> listRow = tS.getIncomeFlowFromWalletByMonth(userid,walletid,initdate,enddate);
+        return getIncomeFlowDTOList(listRow);
+    }
+
+    private List<IncomeFlowDTO> getIncomeFlowDTOList(List<Object[]> listRow) {
         List<IncomeFlowDTO> dtoList = new ArrayList<>();
         for (Object[] col : listRow){
             IncomeFlowDTO dto = new IncomeFlowDTO();
@@ -70,7 +88,7 @@ public class TranxController {
             dto.setTotal_expense(new BigDecimal((col[2]).toString()));
             dtoList.add(dto);
         }
-       return dtoList;
+        return dtoList;
     }
 
     @DeleteMapping("/{id}")
