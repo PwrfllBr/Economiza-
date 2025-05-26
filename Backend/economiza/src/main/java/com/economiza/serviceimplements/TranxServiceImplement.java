@@ -6,6 +6,7 @@ import com.economiza.serviceinterfaces.ITranxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,5 +36,14 @@ public class TranxServiceImplement implements ITranxService {
     @Override
     public List<Tranx> getTranxFromWallet(int id) {
         return txR.getTranxFromWallet(id);
+    }
+
+    @Override
+    public List<Object[]> getIncomeFlowFromWalletByWeek(Integer userid, Integer walletid, LocalDate initdate, LocalDate enddate) {
+        if (walletid != null) {
+            return txR.getIncomeFlowFromWalletByWeek(userid, walletid, initdate, enddate);
+        } else {
+            return txR.getIncomeFlowFromUserByWeek(userid,initdate,enddate);
+        }
     }
 }

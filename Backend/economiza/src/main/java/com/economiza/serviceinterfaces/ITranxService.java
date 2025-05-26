@@ -2,6 +2,7 @@ package com.economiza.serviceinterfaces;
 
 import com.economiza.entities.Tranx;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ITranxService {
@@ -10,5 +11,6 @@ public interface ITranxService {
     public Tranx listId(int id);
     public List<Tranx> getTranxFromUser(int id);
     public List<Tranx> getTranxFromWallet(int id);
+    public List<Object[]> getIncomeFlowFromWalletByWeek(Integer userid, Integer walletid, LocalDate initdate, LocalDate enddate);
 
 }
