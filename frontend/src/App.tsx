@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { SelectChangeEvent } from '@mui/material'
+import { useState } from 'react'
+import MainToolBar from './components/toolbar/MainToolBar'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const periods = ['Week', 'Month', 'Year']
+  const [selectedPeriod, setSelectedPeriod] = useState(periods[1]) // Default to 'Month'
+
+  const wallets = ['all','wallet1','wallet2'] // Example wallet IDs
+  // post implementation, this would fetch these from the API
+  const [selectedWallet, setSelectedWallet] = useState(wallets[0])
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen)
+  }
+  
+  const handlePeriodChange =(event: SelectChangeEvent) => {
+    setSelectedPeriod(event.target.value as string)
+  }
+  const handleWalletChange =(event: SelectChangeEvent) => {
+    setSelectedWallet(event.target.value as string)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <MainToolBar 
+      isDrawerOpen={isDrawerOpen}
+      toggleDrawer={ toggleDrawer }
+      selectedPeriod={selectedPeriod}
+      handlePeriodChange={ handlePeriodChange }
+      selectedWallet={selectedWallet}
+      handleWalletChange={ handleWalletChange }
+      onRefresh={function (): void { throw new Error('Function not implemented.')} }    
+      onClose={function (): void { throw new Error('Function not implemented.') } }>
+      </MainToolBar>
+    </div>
   )
 }
 
